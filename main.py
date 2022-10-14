@@ -7,44 +7,45 @@ from random import randint
 import time
 
 #variables
-
-chiffre = random(0,100)
-nbessai = 0
-
-#def
-while True():
-
-print("J'ai choisi un nombre entre 0 et 100. À vous de deviner...")
-
-def victoir():
-    print("BRAVO ! Bonne réponse vous avez réussi en:" nbessai " essai")
-    rep = int(input("Voulez vous quitter ?" / "(y/n)"))
-
-    if rep == n:
-        main()
-
-    if rep == y:
-        print("Merci d'avoir jouer et aurevoir.")
+chiffre = randint(0, 100)
+nbtry = 0
+boucle_jeu = True
 
 
-def  main():
+while boucle_jeu:
 
-    print("J'ai choisi un nombre entre 0 et 100. À vous de deviner..." /)
+   #main
+   plimite = int(input("Sélectionner la limite du plus petite nombre: \n"))
+   glimite = int(input("Sélectionner la limite du plus Grand nombre: \n"))
 
-    Essai = int(input("Entrer votre essai: "))
-    print(" ")
-    nbessai + 1
+   chiffre = randint(plimite, glimite)
 
-def analyse():
+   print("J'ai choisi un nombre entre ",plimite, " et ",glimite, ". À vous de deviner...")
+   essai = int(input("Entrer votre essai: \n"))
+   essai_faux = True
 
-    nbessai + 1
-    if Essai < chiffre:
-    print("Le chiffre que vous venez de choisire est plus petit que le chiffre qui a été choisi.")
-    Essai = int(input("Entrer votre essai: "))
+   while essai_faux:
 
-    if Essai > chiffre:
-     print("Le chiffre que vous venez de choisire est plus grand que le chiffre qui a été choisi.")
-     Essai = int(input("Entrer votre essai: "))
+       #ananylse
+       if essai < chiffre:
+           print("\nLe chiffre que vous venez de choisire est plus petit que le chiffre qui a été choisi.")
+           essai = int(input("Entrer votre essai: "))
 
-    if Essai == chiffre:
-          victoir()
+       if essai > chiffre:
+           print("\nLe chiffre que vous venez de choisire est plus grand que le chiffre qui a été choisi.")
+           essai = int(input("Entrer votre essai: "))
+           nbtry = +1
+
+       if essai == chiffre:
+
+           nbtry = +1
+           print("BRAVO ! Bonne réponse vous avez réussi en seulment:", nbtry, " essai")
+
+           rep = input("Voulez vous quitter ? \n (y/n)")
+           if rep == "n":
+               essai_faux = False
+
+           if rep == "y":
+               print("Merci d'avoir jouer et aurevoir.")
+               essai_faux = False
+               boucle_jeu = False
